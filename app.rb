@@ -55,16 +55,17 @@ class WordGuesserApp < Sinatra::Base
   # won, lost, or neither, and take the appropriate action.
   # Notice that the show.erb template expects to use the instance variables
   # wrong_guesses and word_with_guesses from @game.
+
   get '/show' do
     @game = session[:game]
     case @game.check_win_or_lose
     when :win
-    erb :win
+    redirect '/win'
     when :lose
-    erb :lose
+    redirect '/lose'
     else
     erb :show
-    end
+    end 
   end
 
   get '/win' do
